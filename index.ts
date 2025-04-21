@@ -10,8 +10,8 @@ const main = async () => {
     available: true,
   };
 
-  const result = await createBook(newBook);
-  console.log(result);
+  //const result = await createBook(newBook);
+  //console.log(result);
 };
 
 main()
