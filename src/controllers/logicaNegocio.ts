@@ -33,7 +33,7 @@ export const createBook = async (newBook: object) => {
       return { success: true, data: newBookOnDb, message: "Libro creado" }
       
     } catch (error: any) {
-      return { success: false, message: error.message }
+      return { success: false, message: `Errror al crear libro: ${error.message}` }
     }
   }
 
