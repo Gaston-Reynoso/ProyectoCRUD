@@ -29,22 +29,21 @@ const Book = mongoose.model<bookInterface>("book", bookSchema)//Para acceder a l
 
 //Crear Libro
 export const createBook = async (newBook: object) => {
-    try {
-      const book: bookInterface = new Book(newBook)
-      const newBookOnDb = await book.save()  //Para guardar.
-      return { success: true, data: newBookOnDb, message: "Libro creado" }
-      
-    } catch (error: any) {
-      return { success: false, message: `Errror al crear libro: ${error.message}` }
-    }
+  try {
+    const book: bookInterface = new Book(newBook)
+    return await book.save() 
+  } catch (error: any) {
+    return { message: error.message }
   }
+}
+
 
   //Mostrar Libro
   export const getBooks = async () => {
     try {
       const books = await Book.find()
-      console.log(books)
-      return { success: true, data: books, message: "Libros: " }
+     
+      return books
     } catch (error: any) {
       return { success: false, message: error.message }
     }
@@ -54,11 +53,11 @@ export const createBook = async (newBook: object) => {
   export const getBookById = async (id: string) => {
     try {
       const book = await Book.findById(id);
-  
+     
       if (!book) {
-        return { success: false, message: "Usuario no existente" }
+        console.log("Error al recuperar los libros...")
       } else {
-        return { success: true, data: book, message: "Usuario filtrado por id" }
+        return book 
       }
     } catch (error: any) {
       return { success: false, message: error.message }
@@ -70,10 +69,11 @@ export const createBook = async (newBook: object) => {
   export const updateBook = async (id: string, body: object) => {
     try {
       const updateBook = await Book.findByIdAndUpdate(id, body, { new: true }) //Esto se hace en MONGO ({ new: true } me da la version actualizada del objeto)
+      
       if (!updateBook) {
-        return { sucess: false, message: "Libro no existente" }
+        console.log("Libro no existente" )
       } else {
-        return { sucess: true, data: updateBook, message: "Libro actualizado" }
+        return (updateBook)
       }
     } catch (error: any) {
       return { sucess: false, message: error.message }
@@ -85,15 +85,16 @@ export const createBook = async (newBook: object) => {
   export const deleteBook = async (id: string) => {
     try {
       const deletedBook = await Book.findByIdAndDelete(id) 
+    
       if (!deletedBook) {
-        return { sucess: false, message: "Libro no existente" }
+        console.log("Libro no existente" )
       } else {
-        return { sucess: true, data: deletedBook, message: "Libro actualizado" }
+        return deleteBook
       }
     } catch (error: any) {
       return { sucess: false, message: error.message }
     }
   }
-
-  getBooks();
-  getBookById("68065331766fbffd9969bafc");
+//getBooks()
+//getBookById()
+//updateBook()
