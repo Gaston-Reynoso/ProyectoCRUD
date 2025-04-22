@@ -1,7 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
-import {connectDB} from '../dataBase/connect';
+import {connectDB} from '../dataBase/connect'
 connectDB()
-
 
 //Interface de libro (esto aplica a mi sistema)
 export interface bookInterface extends Document {
@@ -95,6 +94,4 @@ export const createBook = async (newBook: object) => {
       return { sucess: false, message: error.message }
     }
   }
-//getBooks()
-//getBookById()
-//updateBook()
+

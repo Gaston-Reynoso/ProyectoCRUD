@@ -1,14 +1,16 @@
 import { createBook, getBooks, getBookById, updateBook, deleteBook } from "./src/controllers/logicaNegocio";
 
+
 const main = async () => {
-  /*const createdBook = await createBook({ISBN: 4564656, title:"Mi Planta de Naranja Lima", author:"Jose Vasconcelos", publishedYear: 1968, genre:"Novela"})
-  console.log(createdBook)*/
+
   let response;
   
-  let action = ""
-  let id = ""
-  let newBook = {ISBN: 4564656, title:"Mi Planta de Naranja Lima", author:"Jose Vasconcelos", publishedYear: 1968, genre:"Novela"}
-  let body = {title:"Mi planta de Naranja Lima"}
+  let action = "";  //AQUI PONEMOS LA ACCION A REALIZAR
+  let id = "";
+  //ISBN: 4564656, title:"Mi Planta de Naranja Lima", author:"Jose Vasconcelos", publishedYear: 1968, genre:"Novela"
+  let newBook = {};
+  let body = {title:" "};
+
 
 
   switch (action) {
